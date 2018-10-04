@@ -1,0 +1,56 @@
+#include "Vector.h"
+#iostream
+using namespace std;
+
+Vector::Vector(){
+  vec_ptr = NULL;
+  vec_size = 0;
+  vec_capacity = 0;
+}
+
+Vector::Vector(const Vector &other){
+  vec_ptr = other.vec_ptr;
+  vec_size = other.vec_size;
+  vec_capacity = other.vec_capacity;
+}
+
+Vector::~Vector(){
+  delete [] vec_ptr;
+  vec_size = 0;
+  vec_capacity = 0;
+}
+
+int capacity(){
+  return vec_capacity;
+}
+
+int Vector::size(){
+  return vec_size;
+}
+
+void Vector::push_back(int element){
+  if(vec_size < vec_capacity)
+    vec_ptr[vec_size] = elemtent;
+  else
+    {
+    resize();
+    vec_ptr[vec_size] = element;
+    }
+}
+
+void Vector::resize(){
+  if(vec_capacity == 0)
+    vec_capacity = 1;
+  vec_capacity *= 2;
+}
+
+void &Vector::operator=(const Vector &other){
+  vec_ptr = new int other.vec_capacity;
+  vec_size = other.vec_size;
+  vec_capacity = other.vec_capacity;
+  for(int i = 0; i < vec_size; i++){
+    vec_ptr[i] = other.vec_ptr[i];
+}
+double &Vector::operator[](unsigned int index){
+  return vec_ptr[index];
+}
